@@ -13,10 +13,10 @@ pygame.display.set_caption("Flappy bird 🐦")
 
 FPS = 60
 VEL = 3
-JUMP_VELOCITY = 10
+JUMP_VELOCITY = 50
 GRAVITY = VEL/2
 PIPEVEL = 2
-BIRDWIDTH, BIRDHEIGHT = 55,40
+BIRDWIDTH, BIRDHEIGHT = 50,35
 MINPIPEHEIGHT, MAXPIPEHEIGHT = 400, 100
 GAP = BIRDHEIGHT + 4  *(BIRDHEIGHT//2)
 PIPE_GAP = 200
@@ -28,6 +28,7 @@ BACKGROUND_IMAGE = pygame.image.load(os.path.join("Assets", "background.png"))
 SCALED_BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE, (WIDTH, HEIGHT))
 BIRD = pygame.transform.scale(pygame.image.load(os.path.join("Assets", "bird.png")), (BIRDWIDTH,BIRDHEIGHT))
 PIPE = pygame.image.load(os.path.join("Assets", "FullPipe.png"))
+MIRRORPIPE = pygame.image.load(os.path.join("Assets", "MirrorPipe.png"))
 
 def pipeGenerator():
     inferiorlimit = random.randint(100, HEIGHT - 100 - GAP)
@@ -58,9 +59,13 @@ def handle_pipes(pipelist):
         pipelist.append((pipe_down, True))
         pipelist.append((pipe_up, False))
 
-def bird_jump(keys_pressed, bird):
-    if keys_pressed[pygame.K_SPACE] and bird.y - JUMP_VELOCITY > 0:
+def bird_jump(keys_pressed, bird, has_jumped):
+    if keys_pressed[pygame.K_SPACE] and bird.y - JUMP_VELOCITY > 0 and not has_jumped:
+        has_jumped = True
         pygame.event.post(pygame.event.Event(BIRD_JUMP))
+    if not keys_pressed[pygame.K_SPACE] and has_jumped:
+        has_jumped = False
+    return has_jumped
 
 def apply_gravity(bird):
     bird.y += GRAVITY
@@ -80,7 +85,7 @@ def draw_window(bird, pipelist):
         if down:
             WIN.blit(PIPE, (value.x, value.y))
         else:
-            WIN.blit(pygame.transform.rotate(PIPE, 180), (value.x, value.y))
+            WIN.blit(pygame.transform.rotate(MIRRORPIPE, 180), (value.x, value.y))
 
     # Updates the display with all the drawn elements
     pygame.display.update()
@@ -88,6 +93,7 @@ def draw_window(bird, pipelist):
 def main():
     bird = pygame.Rect(100, HEIGHT//2, BIRDWIDTH, BIRDHEIGHT)
     pipelist = []
+    has_jumped = False
     clock = pygame.time.Clock()
     run = True
     while run:
@@ -101,7 +107,7 @@ def main():
                 bird.y -= JUMP_VELOCITY
 
         keys_pressed = pygame.key.get_pressed()
-        bird_jump(keys_pressed, bird)
+        has_jumped = bird_jump(keys_pressed, bird, has_jumped)
         apply_gravity(bird)
         handle_pipes(pipelist)
 
