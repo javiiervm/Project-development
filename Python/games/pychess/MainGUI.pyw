@@ -1,13 +1,13 @@
 # Importación de módulos necesarios
+import sys
 from copy import deepcopy  # Para crear copias profundas de objetos
-import ChessGame as game  # Módulo principal del juego de ajedrez
-import Board as brd       # Módulo para el tablero
-import Player as plr      # Módulo para los jugadores
-import Position as pos    # Módulo para manejar posiciones
-import Square as sq       # Módulo para las casillas del tablero
 import os
 import tkinter as tk
 from tkinter import messagebox
+
+modules_path = f"./Modules"
+sys.path.append(modules_path)
+from Modules import ChessGame as game, Position as pos, Player as plr, Square as sq, Board as brd
 
 # Definición de colores para la interfaz
 WHITE_BG = "#ffffff"  # Color blanco para casillas blancas

@@ -1,10 +1,6 @@
 from copy import deepcopy
 
-import ChessGame as game
-import Board as brd
-import Player as plr
-import Position as pos
-import Square as sq
+from Python.games.pychess.Modules import ChessGame as game, Position as pos, Player as plr, Square as sq, Board as brd
 import os
 
 def castlingChecker(kingPiece, playerSquares):
