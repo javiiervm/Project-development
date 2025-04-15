@@ -4,4 +4,4 @@
 </div>
 
 ### Python
-- [Git Manager](https://github.com/javiiervm/python-gitmanager): This program has been developed to make git operations more convenient for your projects, especially if you work with multiple repositories.
+- [Git Manager](https://github.com/javiiervm/python-gitmanager): This program has been developed to make git operations easier for your projects, especially if you work with multiple repositories.
