@@ -7,7 +7,7 @@
 - [ADVR_Refunds_Mod](https://github.com/javiiervm/ADVR_Refunds_Mod): Mod for the game Ancient Dungeon VR that allows you to refund the progress reward you don't want anymore.
 
 ### Python
-- [Git Manager](https://github.com/javiiervm/python-gitmanager): This program has been developed to make git operations easier for your projects, especially if you work with multiple repositories.
+- [Git Manager](https://github.com/javiiervm/GitManager): This program has been developed to make git operations easier for your projects, especially if you work with multiple repositories.
 - [Pychess](https://github.com/javiiervm/pychess): Play chess with your friends on any device!
 - [Wordle](https://github.com/javiiervm/wordle): A simple wordle-style game for terminal (in spanish).
 - [Xavion AI](https://github.com/javiiervm/Xavion-AI): An AI assistant to get definitions, answer questions or just talk to.
